@@ -1,0 +1,575 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.header.scrolled {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.topBar {
+  background: #ff5722;
+  color: #fff;
+  padding: 10px 0;
+  font-size: 13px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.topBarContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.contactInfo {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.contactItem:hover {
+  color: #fff;
+  opacity: 0.85;
+}
+
+.contactItem ion-icon {
+  font-size: 16px;
+  color: #fff;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 12px;
+}
+
+.socialIcon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.socialIcon:hover {
+  background: #fff;
+  color: #ff5722;
+  border-color: #fff;
+  transform: translateY(-2px);
+}
+
+.socialIcon ion-icon {
+  font-size: 16px;
+}
+
+.mainNav {
+  background: #fff;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.navContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+}
+
+.logo {
+  text-decoration: none;
+  display: block;
+  transition: transform 0.3s ease;
+  margin: 0;
+  padding: 0;
+}
+
+.logo:hover {
+  transform: scale(1.02);
+}
+
+.logoImage {
+  height: auto;
+  object-fit: contain;
+  max-height: 65px;
+  transition: opacity 0.3s ease;
+  display: block;
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  width: auto;
+}
+
+.logo:hover .logoImage {
+  opacity: 0.85;
+}
+
+.hamburger {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 100;
+  transition: all 0.3s ease;
+  margin-left: auto;
+}
+
+.hamburgerIcon {
+  display: block;
+  width: 26px;
+  height: 20px;
+  position: relative;
+}
+
+.hmLines {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.hmLine {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #1a1a1a;
+  transition: all 0.3s ease;
+}
+
+.line1 {
+  top: 0;
+}
+
+.line2 {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.line3 {
+  bottom: 0;
+}
+
+.hamburger:hover .hmLine {
+  background: #ff5722;
+}
+
+.navLinks {
+  display: flex;
+  list-style: none;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.navLinks li a {
+  text-decoration: none;
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 13.5px;
+  letter-spacing: 0.3px;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 10px 18px;
+  border-radius: 6px;
+  display: block;
+  text-transform: uppercase;
+}
+
+.navLinks li a:hover {
+  color: #ff5722;
+  background: rgba(255, 87, 34, 0.08);
+}
+
+.contactBtn {
+  background: #ff5722;
+  color: #fff !important;
+  padding: 12px 28px !important;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(255, 87, 34, 0.3);
+}
+
+.contactBtn:hover {
+  background: #e64a19;
+  color: #fff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 87, 34, 0.4);
+}
+
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 80%;
+  height: 100%;
+  background: #fff;
+  z-index: 2000;
+  transition: left 0.4s ease;
+  overflow-y: auto;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.mobileMenu.open {
+  left: 0;
+}
+
+.closeBtn {
+  position: fixed;
+  top: 20px;
+  right: calc(100% - 80% - 20px);
+  width: 38px;
+  height: 38px;
+  background: #ff5722;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2001;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 87, 34, 0.4);
+}
+
+.mobileMenu.open .closeBtn {
+  display: flex;
+}
+
+.closeBtn:hover {
+  transform: rotate(90deg) scale(1.05);
+  background: #e64a19;
+  color: #fff;
+}
+
+.closeBtn ion-icon {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.mobileMenuContent {
+  padding: 90px 25px 30px;
+}
+
+.mobileLogoSection {
+  margin-bottom: 35px;
+  padding-bottom: 25px;
+  border-bottom: 2px solid #f0f0f0;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.mobileLogoImage {
+  height: auto;
+  object-fit: contain;
+  max-height: 50px;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.mobileNavLinks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mobileNavLinks li {
+  margin-bottom: 6px;
+}
+
+.mobileNavLinks li a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  text-decoration: none;
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.mobileNavLinks li a:hover {
+  background: rgba(255, 87, 34, 0.08);
+  border-color: rgba(255, 87, 34, 0.2);
+  color: #ff5722;
+  transform: translateX(8px);
+}
+
+.mobileNavLinks li a ion-icon {
+  font-size: 22px;
+  color: #ff5722;
+  transition: all 0.3s ease;
+}
+
+.mobileNavLinks li a:hover ion-icon {
+  transform: scale(1.1);
+}
+
+.mobileContactLink {
+  background: #ff5722;
+  color: #fff !important;
+  margin-top: 15px;
+  border: 2px solid #ff5722;
+}
+
+.mobileContactLink:hover {
+  background: #e64a19 !important;
+  color: #fff !important;
+  border-color: #e64a19;
+  transform: translateX(8px);
+}
+
+.mobileContactLink ion-icon {
+  color: #fff !important;
+}
+
+.mobileContactLink:hover ion-icon {
+  color: #fff !important;
+}
+
+.mobileContactInfo {
+  margin-top: 35px;
+  padding-top: 25px;
+  border-top: 2px solid #f0f0f0;
+}
+
+.mobileContactItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-size: 13px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  margin-bottom: 6px;
+}
+
+.mobileContactItem:hover {
+  background: rgba(255, 87, 34, 0.08);
+  color: #ff5722;
+}
+
+.mobileContactItem ion-icon {
+  font-size: 20px;
+  color: #ff5722;
+}
+
+.mobileSocial {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.mobileSocial a {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 87, 34, 0.1);
+  border: 2px solid rgba(255, 87, 34, 0.2);
+  border-radius: 50%;
+  color: #ff5722;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.mobileSocial a:hover {
+  background: #ff5722;
+  color: #fff;
+  border-color: #ff5722;
+  transform: translateY(-3px);
+}
+
+.mobileSocial a ion-icon {
+  font-size: 20px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1999;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+}
+
+@media (max-width: 992px) {
+  .navLinks {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+    margin-left: auto;
+    padding: 8px;
+  }
+
+  .closeBtn {
+    display: none;
+  }
+
+  .mobileMenu.open .closeBtn {
+    display: flex;
+  }
+
+  .topBar {
+    display: none;
+  }
+
+  .mainNav {
+    background: #ff5722;
+    border-bottom: none;
+    padding: 12px 0;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+
+  .navContent {
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .logo {
+    flex-shrink: 0;
+  }
+
+  .logoImage {
+    max-height: 50px;
+  }
+
+  .hmLine {
+    background: #fff;
+  }
+
+  .hamburger:hover .hmLine {
+    background: rgba(255, 255, 255, 0.8);
+  }
+}
+
+@media (max-width: 768px) {
+  .topBar {
+    font-size: 12px;
+    padding: 8px 0;
+  }
+
+  .contactItem {
+    font-size: 12px;
+  }
+
+  .logoImage {
+    max-height: 50px;
+  }
+
+  .contactInfo {
+    gap: 8px;
+  }
+
+  .container {
+    padding: 0 12px;
+  }
+
+  .mainNav {
+    padding: 15px 0;
+  }
+
+  .hamburgerIcon {
+    width: 24px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobileMenu {
+    width: 85%;
+  }
+
+  .closeBtn {
+    right: calc(100% - 85% - 15px);
+    width: 36px;
+    height: 36px;
+  }
+
+  .closeBtn ion-icon {
+    font-size: 22px;
+  }
+
+  .topBar {
+    padding: 6px 0;
+  }
+
+  .container {
+    padding: 0 10px;
+  }
+
+  .mobileMenuContent {
+    padding: 80px 20px 25px;
+  }
+
+  .contactItem ion-icon {
+    font-size: 14px;
+  }
+
+  .logoImage {
+    max-height: 40px;
+  }
+
+  .mainNav {
+    padding: 10px 0;
+  }
+
+  .hamburgerIcon {
+    width: 22px;
+    height: 16px;
+  }
+
+  .hamburger {
+    padding: 6px;
+  }
+}

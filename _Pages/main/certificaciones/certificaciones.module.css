@@ -1,0 +1,810 @@
+.certificaciones {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #666;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.hero {
+  position: relative;
+  height: 60vh;
+  margin-top: 140px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  background-size: cover;
+  background-position: center;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.88) 0%, rgba(255, 87, 34, 0.78) 100%);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  text-align: center;
+}
+
+.heroTitle {
+  font-size: 56px;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.heroSubtitle {
+  font-size: 22px;
+  color: #fff;
+  font-weight: 300;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.intro {
+  padding: 100px 0;
+  background: #fff;
+}
+
+.introGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.introContent {
+  padding-right: 20px;
+}
+
+.sectionLabel {
+  display: inline-block;
+  background: rgba(255, 87, 34, 0.1);
+  color: #ff5722;
+  padding: 10px 24px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 20px;
+}
+
+.sectionTitle {
+  font-size: 42px;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 25px;
+  line-height: 1.3;
+}
+
+.introText {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+.introImage {
+  position: relative;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.beneficios {
+  padding: 100px 0;
+  background: #f8f8f8;
+}
+
+.beneficiosHeader {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.beneficiosGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.beneficioCard {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 20px;
+  text-align: center;
+  transition: all 0.4s ease;
+  border-top: 4px solid transparent;
+}
+
+.beneficioCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  border-top-color: #ff5722;
+}
+
+.beneficioIcon {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #ff5722 0%, #e64a19 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 25px;
+}
+
+.beneficioIcon ion-icon {
+  font-size: 36px;
+  color: #fff;
+}
+
+.beneficioTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 15px;
+}
+
+.beneficioDesc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #666;
+}
+
+.programas {
+  padding: 100px 0;
+  background: #fff;
+}
+
+.programasHeader {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.programasGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.programaCard {
+  background: #f8f8f8;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.programaCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.programaImagen {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.programaImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.programaBadge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #ff5722;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.programaContent {
+  padding: 30px;
+}
+
+.programaMeta {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.programaNivel {
+  background: rgba(255, 87, 34, 0.1);
+  color: #ff5722;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.programaDuracion {
+  background: #e0e0e0;
+  color: #666;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.programaTitle {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 15px;
+}
+
+.programaDesc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.programaFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.programaPrecio {
+  font-size: 24px;
+  font-weight: 800;
+  color: #ff5722;
+}
+
+.programaBtn {
+  background: #ff5722;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.programaBtn:hover {
+  background: #e64a19;
+  transform: scale(1.05);
+}
+
+.proceso {
+  padding: 100px 0;
+  background: #fff;
+}
+
+.procesoHeader {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.procesoGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+.procesoItem {
+  text-align: center;
+  position: relative;
+}
+
+.procesoItem:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 40px;
+  right: -20px;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, #ff5722 0%, transparent 100%);
+}
+
+.procesoNumero {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #ff5722 0%, #e64a19 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 25px;
+  font-size: 32px;
+  font-weight: 900;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(255, 87, 34, 0.3);
+}
+
+.procesoTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 15px;
+}
+
+.procesoDesc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #666;
+}
+
+.requisitos {
+  padding: 100px 0;
+  background: #f8f8f8;
+}
+
+.requisitosContent {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.requisitosText {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #666;
+  margin: 30px 0 50px;
+}
+
+.requisitosGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  text-align: left;
+}
+
+.requisitoItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.requisitoItem:hover {
+  transform: translateX(10px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.requisitoItem ion-icon {
+  font-size: 28px;
+  color: #ff5722;
+  flex-shrink: 0;
+}
+
+.requisitoItem span {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.testimonios {
+  padding: 100px 0;
+  background: #fff;
+}
+
+.testimoniosHeader {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.testimoniosGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.testimonioCard {
+  background: #f8f8f8;
+  padding: 40px 30px;
+  border-radius: 20px;
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.testimonioCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.testimonioQuote {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  opacity: 0.1;
+}
+
+.testimonioQuote ion-icon {
+  font-size: 60px;
+  color: #ff5722;
+}
+
+.testimonioTexto {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #666;
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+.testimonioAutor {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.testimonioAvatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.testimonioImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.testimonioInfo {
+  flex: 1;
+}
+
+.testimonioNombre {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 5px;
+}
+
+.testimonioCargo {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 3px;
+}
+
+.testimonioEmpresa {
+  font-size: 13px;
+  color: #999;
+}
+
+.certificadores {
+  padding: 100px 0;
+  background: #f8f8f8;
+}
+
+.certificadoresContent {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.certificadoresText {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #666;
+  margin: 30px 0 50px;
+}
+
+.certificadoresLogos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  margin-top: 50px;
+}
+
+.logoItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.logoItem:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.logoImage {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.cta {
+  padding: 120px 0;
+  background: #fff;
+  position: relative;
+}
+
+.cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e0e0e0 20%, #e0e0e0 80%, transparent);
+}
+
+.ctaContent {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 80px;
+  background: #fafafa;
+  border-radius: 4px;
+  border: 1px solid #e8e8e8;
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaContent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #ff5722 0%, #e64a19 100%);
+}
+
+.ctaTitle {
+  font-size: 38px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+
+.ctaText {
+  font-size: 17px;
+  color: #666;
+  margin-bottom: 40px;
+  line-height: 1.7;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #ff5722;
+  color: #fff;
+  padding: 16px 36px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.3px;
+  border: 2px solid #ff5722;
+}
+
+.ctaButton:hover {
+  background: #e64a19;
+  border-color: #e64a19;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 87, 34, 0.25);
+}
+
+.ctaButton ion-icon {
+  font-size: 20px;
+}
+
+.ctaButtonSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  color: #1a1a1a;
+  padding: 16px 36px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid #1a1a1a;
+  letter-spacing: 0.3px;
+}
+
+.ctaButtonSecondary:hover {
+  background: #1a1a1a;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(26, 26, 26, 0.15);
+}
+
+.ctaButtonSecondary ion-icon {
+  font-size: 20px;
+}
+
+@media (max-width: 1200px) {
+  .beneficiosGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .programasGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .procesoGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .procesoItem:nth-child(2n)::after {
+    display: none;
+  }
+
+  .testimoniosGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .certificadoresLogos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .hero {
+    height: 50vh;
+    margin-top: 120px;
+  }
+
+  .heroTitle {
+    font-size: 42px;
+  }
+
+  .heroSubtitle {
+    font-size: 18px;
+  }
+
+  .container {
+    padding: 0 30px;
+  }
+
+  .introGrid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .introContent {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 45vh;
+    margin-top: 100px;
+  }
+
+  .heroTitle {
+    font-size: 32px;
+  }
+
+  .heroSubtitle {
+    font-size: 16px;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  .sectionTitle {
+    font-size: 32px;
+  }
+
+  .intro,
+  .beneficios,
+  .programas,
+  .proceso,
+  .requisitos,
+  .testimonios,
+  .certificadores,
+  .cta {
+    padding: 60px 0;
+  }
+
+  .beneficiosGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .programasGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .procesoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .procesoItem::after {
+    display: none;
+  }
+
+  .requisitosGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .testimoniosGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .certificadoresLogos {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .ctaContent {
+    padding: 40px 30px;
+  }
+
+  .ctaButtons {
+    flex-direction: column;
+  }
+
+  .ctaButton,
+  .ctaButtonSecondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 28px;
+  }
+
+  .sectionTitle {
+    font-size: 28px;
+  }
+
+  .ctaTitle {
+    font-size: 28px;
+  }
+}

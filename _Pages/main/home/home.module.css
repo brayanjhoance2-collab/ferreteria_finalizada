@@ -1,0 +1,660 @@
+.home {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #666;
+}
+
+.error {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #d32f2f;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.heroSlide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  pointer-events: none;
+}
+
+.heroSlide.activeSlide {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.85) 0%, rgba(255, 87, 34, 0.75) 100%);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  text-align: center;
+}
+
+.heroTitle {
+  font-size: 72px;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.heroSubtitle {
+  font-size: 24px;
+  color: #fff;
+  font-weight: 300;
+  margin-bottom: 40px;
+}
+
+.heroButtons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.heroButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #ff5722;
+  color: #fff;
+  padding: 18px 40px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
+}
+
+.heroButton:hover {
+  background: #e64a19;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 87, 34, 0.4);
+}
+
+.heroButton ion-icon {
+  font-size: 22px;
+}
+
+.heroButtonSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  color: #fff;
+  padding: 18px 40px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid #fff;
+}
+
+.heroButtonSecondary:hover {
+  background: #fff;
+  color: #1a1a1a;
+  transform: translateY(-3px);
+}
+
+.heroButtonSecondary ion-icon {
+  font-size: 22px;
+}
+
+.heroDots {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 10;
+}
+
+.servicios {
+  padding: 120px 0;
+  background: #fff;
+}
+
+.serviciosHeader {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.sectionLabel {
+  display: inline-block;
+  background: rgba(255, 87, 34, 0.1);
+  color: #ff5722;
+  padding: 10px 24px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 20px;
+}
+
+.sectionTitle {
+  font-size: 48px;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.serviciosGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.servicioCard {
+  background: #f8f8f8;
+  padding: 50px 40px;
+  border-radius: 20px;
+  transition: all 0.4s ease;
+  border-top: 4px solid transparent;
+}
+
+.servicioCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  border-top-color: #ff5722;
+}
+
+.servicioIcon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #ff5722 0%, #e64a19 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 30px;
+}
+
+.servicioIcon ion-icon {
+  font-size: 40px;
+  color: #fff;
+}
+
+.servicioTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.servicioDesc {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #666;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.servicioLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #ff5722;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.servicioLink:hover {
+  gap: 12px;
+}
+
+.servicioLink ion-icon {
+  font-size: 20px;
+}
+
+.serviciosCta {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #ff5722;
+  color: #fff;
+  padding: 18px 40px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
+}
+
+.ctaButton:hover {
+  background: #e64a19;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 87, 34, 0.4);
+}
+
+.ctaButton ion-icon {
+  font-size: 22px;
+}
+
+.about {
+  padding: 120px 0;
+  background: #f8f8f8;
+}
+
+.aboutGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.aboutContent {
+  padding-right: 20px;
+}
+
+.aboutText {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+.aboutStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.statItem {
+  text-align: center;
+  padding: 25px;
+  background: #fff;
+  border-radius: 15px;
+  transition: transform 0.3s ease;
+}
+
+.statItem:hover {
+  transform: translateY(-5px);
+}
+
+.statNumber {
+  font-size: 48px;
+  font-weight: 900;
+  color: #ff5722;
+  margin-bottom: 10px;
+}
+
+.statLabel {
+  font-size: 15px;
+  font-weight: 600;
+  color: #666;
+}
+
+.aboutButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #ff5722;
+  color: #fff;
+  padding: 16px 36px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.aboutButton:hover {
+  background: #e64a19;
+  gap: 15px;
+}
+
+.aboutButton ion-icon {
+  font-size: 20px;
+}
+
+.aboutImage {
+  position: relative;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+}
+
+.partners {
+  padding: 120px 0;
+  background: #fff;
+}
+
+.partnersHeader {
+  text-align: center;
+  margin-bottom: 80px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.partnersDesc {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #666;
+  margin-top: 20px;
+}
+
+.slider {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.sliderTrack {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sliderItem {
+  position: absolute;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logoWrapper {
+  width: 250px;
+  height: 150px;
+  background: #fff;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.logoImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.sliderDots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot:hover {
+  background: #bdbdbd;
+}
+
+.activeDot {
+  background: #ff5722;
+  width: 14px;
+  height: 14px;
+}
+
+.location {
+  padding: 120px 0;
+  background: #f8f8f8;
+}
+
+.locationGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.locationContent {
+  padding-right: 20px;
+}
+
+.locationInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.infoItem {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.infoIcon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #ff5722 0%, #e64a19 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.infoIcon ion-icon {
+  font-size: 28px;
+  color: #fff;
+}
+
+.infoText {
+  flex: 1;
+}
+
+.infoLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.infoValue {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+
+.locationMap {
+  width: 100%;
+  height: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 1200px) {
+  .serviciosGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .aboutStats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .hero {
+    height: 80vh;
+  }
+
+  .heroTitle {
+    font-size: 56px;
+  }
+
+  .heroSubtitle {
+    font-size: 20px;
+  }
+
+  .container {
+    padding: 0 30px;
+  }
+
+  .serviciosGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .aboutGrid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .aboutContent {
+    padding-right: 0;
+  }
+
+  .locationGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .locationContent {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 70vh;
+  }
+
+  .heroTitle {
+    font-size: 42px;
+  }
+
+  .heroSubtitle {
+    font-size: 18px;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  .sectionTitle {
+    font-size: 36px;
+  }
+
+  .servicios,
+  .about,
+  .partners,
+  .location {
+    padding: 80px 0;
+  }
+
+  .aboutStats {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .slider {
+    height: 150px;
+  }
+
+  .logoWrapper {
+    width: 180px;
+    height: 100px;
+    padding: 20px;
+  }
+
+  .locationMap {
+    height: 350px;
+  }
+
+  .heroButtons {
+    flex-direction: column;
+  }
+
+  .heroButton,
+  .heroButtonSecondary {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 32px;
+  }
+
+  .heroSubtitle {
+    font-size: 16px;
+  }
+
+  .sectionTitle {
+    font-size: 28px;
+  }
+
+  .statNumber {
+    font-size: 36px;
+  }
+}

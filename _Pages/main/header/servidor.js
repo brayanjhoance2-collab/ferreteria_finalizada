@@ -1,0 +1,58 @@
+"use server"
+
+import db from "@/_DB/db"
+
+export async function getEmpresaInfo() {
+  try {
+    const result = await db.query(`
+      SELECT 
+        nombre,
+        telefono,
+        email,
+        horario_lun_jue,
+        horario_vie,
+        horario_sab,
+        descripcion,
+        historia,
+        fecha_fundacion,
+        anios_experiencia,
+        logo_url
+      FROM empresa_info 
+      WHERE activo = true 
+      LIMIT 1
+    `)
+
+    if (result.rows.length === 0) {
+      return {
+        nombre: 'Ferretería RyM',
+        telefono: '+51 1 234 5678',
+        email: 'contacto@ferreteriarym.pe',
+        horario_lun_jue: '08:00 - 18:00',
+        horario_vie: '08:00 - 18:00',
+        horario_sab: '08:00 - 14:00',
+        descripcion: '',
+        historia: '',
+        fecha_fundacion: 2000,
+        anios_experiencia: 24,
+        logo_url: null
+      }
+    }
+
+    return result.rows[0]
+  } catch (error) {
+    console.error('Error al obtener información de empresa:', error)
+    return {
+      nombre: 'Ferretería RyM',
+      telefono: '+51 1 234 5678',
+      email: 'contacto@ferreteriarym.pe',
+      horario_lun_jue: '08:00 - 18:00',
+      horario_vie: '08:00 - 18:00',
+      horario_sab: '08:00 - 14:00',
+      descripcion: '',
+      historia: '',
+      fecha_fundacion: 2000,
+      anios_experiencia: 24,
+      logo_url: null
+    }
+  }
+}

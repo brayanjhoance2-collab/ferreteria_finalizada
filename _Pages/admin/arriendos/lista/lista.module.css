@@ -1,0 +1,575 @@
+.container {
+  min-height: 100vh;
+  background: #f5f7fa;
+  padding: 100px 40px 40px;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: 16px;
+  color: #666;
+}
+
+.loading ion-icon {
+  font-size: 48px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.header {
+  max-width: 1600px;
+  margin: 0 auto 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.headerContent {
+  flex: 1;
+  min-width: 200px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: #666;
+  margin: 0;
+}
+
+.btnPrimary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: #ff5722;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btnPrimary:hover {
+  background: #e64a19;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
+}
+
+.btnPrimary ion-icon {
+  font-size: 20px;
+}
+
+.mensaje {
+  max-width: 1600px;
+  margin: 0 auto 24px;
+  padding: 16px 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mensaje ion-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.mensaje button {
+  margin-left: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.mensaje button:hover {
+  opacity: 1;
+}
+
+.mensaje button ion-icon {
+  font-size: 20px;
+}
+
+.success {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #4caf50;
+}
+
+.error {
+  background: #ffebee;
+  color: #c62828;
+  border: 1px solid #f44336;
+}
+
+.statsGrid {
+  max-width: 1600px;
+  margin: 0 auto 30px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.statCard {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.statIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.statIcon ion-icon {
+  font-size: 28px;
+  color: #fff;
+}
+
+.statContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statLabel {
+  font-size: 12px;
+  color: #999;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.statValue {
+  font-size: 24px;
+  font-weight: 800;
+  color: #1a1a1a;
+  line-height: 1;
+}
+
+.toolbar {
+  max-width: 1600px;
+  margin: 0 auto 24px;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.filters {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: #f5f5f5;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  flex: 1;
+  min-width: 250px;
+}
+
+.searchBox ion-icon {
+  font-size: 20px;
+  color: #666;
+}
+
+.searchBox input {
+  flex: 1;
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 14px;
+  color: #333;
+}
+
+.select,
+.dateInput {
+  padding: 10px 16px;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
+  background: #fff;
+  cursor: pointer;
+}
+
+.select {
+  min-width: 150px;
+}
+
+.dateInput {
+  min-width: 140px;
+}
+
+.btnClear {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btnClear:hover {
+  background: #f5f5f5;
+  border-color: #ccc;
+}
+
+.btnClear ion-icon {
+  font-size: 18px;
+}
+
+.results {
+  max-width: 1600px;
+  margin: 0 auto 16px;
+  font-size: 14px;
+  color: #666;
+}
+
+.tableWrapper {
+  max-width: 1600px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table thead {
+  background: #fafafa;
+  border-bottom: 2px solid #e8e8e8;
+}
+
+.table th {
+  padding: 16px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 700;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.table td {
+  padding: 16px;
+  border-bottom: 1px solid #e8e8e8;
+  font-size: 14px;
+  color: #333;
+}
+
+.table tbody tr:hover {
+  background: #fafafa;
+}
+
+.tdContrato {
+  font-weight: 600;
+}
+
+.contratoInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.numeroContrato {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.tipoArriendo {
+  font-size: 11px;
+  color: #999;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.tdCliente {
+  max-width: 200px;
+}
+
+.clienteInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.clienteNombre {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.clienteRut {
+  font-size: 12px;
+  color: #999;
+}
+
+.fechaFin {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.diasRestantes {
+  font-size: 11px;
+  font-weight: 700;
+  color: #4caf50;
+  text-transform: uppercase;
+}
+
+.diasRestantes.urgente {
+  color: #f44336;
+}
+
+.tdCentrado {
+  text-align: center;
+  font-weight: 600;
+}
+
+.estadoSelect {
+  padding: 6px 12px;
+  border: 2px solid;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.estadoBorrador {
+  background: #f5f5f5;
+  border-color: #9e9e9e;
+  color: #666;
+}
+
+.estadoCotizacion {
+  background: #fff3e0;
+  border-color: #ff9800;
+  color: #e65100;
+}
+
+.estadoAprobado {
+  background: #e3f2fd;
+  border-color: #2196f3;
+  color: #0d47a1;
+}
+
+.estadoActivo {
+  background: #e8f5e9;
+  border-color: #4caf50;
+  color: #1b5e20;
+}
+
+.estadoFinalizado {
+  background: #f3e5f5;
+  border-color: #9c27b0;
+  color: #4a148c;
+}
+
+.estadoCancelado {
+  background: #ffebee;
+  border-color: #f44336;
+  color: #b71c1c;
+}
+
+.tdTotal {
+  font-size: 16px;
+  font-weight: 800;
+  color: #ff5722;
+  text-align: right;
+}
+
+.tdAcciones {
+  text-align: right;
+}
+
+.acciones {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.btnVer,
+.btnEditar,
+.btnEliminar {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #fff;
+  text-decoration: none;
+  color: #666;
+}
+
+.btnVer:hover {
+  background: #2196f3;
+  border-color: #2196f3;
+  color: #fff;
+}
+
+.btnEditar:hover {
+  background: #ff9800;
+  border-color: #ff9800;
+  color: #fff;
+}
+
+.btnEliminar {
+  border: none;
+}
+
+.btnEliminar:hover:not(:disabled) {
+  background: #f44336;
+  border-color: #f44336;
+  color: #fff;
+}
+
+.btnEliminar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btnVer ion-icon,
+.btnEditar ion-icon,
+.btnEliminar ion-icon {
+  font-size: 16px;
+}
+
+.empty {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.empty ion-icon {
+  font-size: 80px;
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+.empty h3 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.empty p {
+  font-size: 16px;
+  color: #666;
+  margin: 0;
+}
+
+@media (max-width: 1200px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 80px 20px 20px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .filters {
+    flex-direction: column;
+  }
+
+  .searchBox {
+    min-width: 100%;
+  }
+
+  .select,
+  .dateInput {
+    width: 100%;
+  }
+
+  .tableWrapper {
+    overflow-x: auto;
+  }
+
+  .table {
+    min-width: 1000px;
+  }
+}

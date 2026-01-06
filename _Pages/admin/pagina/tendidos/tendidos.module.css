@@ -1,0 +1,788 @@
+.adminWrapper {
+  background: #f5f7fa;
+  min-height: 100vh;
+  padding-top: 60px;
+}
+
+.adminHeader {
+  position: sticky;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-bottom: 2px solid #e0e0e0;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom: 0;
+}
+
+.adminHeaderContent h1 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 2px 0;
+}
+
+.adminHeaderContent p {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+}
+
+.adminHeaderActions {
+  display: flex;
+  gap: 12px;
+}
+
+.btnPreview {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #2196f3;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btnPreview:hover {
+  background: #1976d2;
+}
+
+.btnGuardar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  background: #ff5722;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btnGuardar:hover:not(:disabled) {
+  background: #e64a19;
+}
+
+.btnGuardar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btnPreview ion-icon,
+.btnGuardar ion-icon {
+  font-size: 18px;
+}
+
+.mensaje {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  padding: 12px 20px;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 1000;
+  animation: slideDown 0.3s ease;
+  font-size: 14px;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.mensaje.success {
+  border-left: 4px solid #4caf50;
+  color: #2e7d32;
+}
+
+.mensaje.error {
+  border-left: 4px solid #f44336;
+  color: #c62828;
+}
+
+.mensaje ion-icon {
+  font-size: 24px;
+}
+
+.mensaje button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  margin-left: 12px;
+  opacity: 0.7;
+}
+
+.mensaje button:hover {
+  opacity: 1;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: 18px;
+  color: #666;
+}
+
+.editableGroup {
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.editLabel {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  color: #ff5722;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  background: rgba(255, 87, 34, 0.1);
+  padding: 3px 6px;
+  border-radius: 3px;
+  width: fit-content;
+}
+
+.editInput,
+.editInputSmall {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid #ff5722;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.95);
+  transition: all 0.2s ease;
+  color: #1a1a1a;
+}
+
+.editInputSmall {
+  font-size: 13px;
+  padding: 8px 12px;
+}
+
+.editInput:focus,
+.editInputSmall:focus {
+  outline: none;
+  border-color: #e64a19;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.1);
+}
+
+.editTextarea,
+.editTextareaSmall {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid #ff5722;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: inherit;
+  background: rgba(255, 255, 255, 0.95);
+  resize: vertical;
+  transition: all 0.2s ease;
+  color: #1a1a1a;
+}
+
+.editTextareaSmall {
+  font-size: 13px;
+  padding: 8px 12px;
+}
+
+.editTextarea:focus,
+.editTextareaSmall:focus {
+  outline: none;
+  border-color: #e64a19;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.1);
+}
+
+.editFile {
+  padding: 10px;
+  border: 2px dashed #ff5722;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.95);
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.editFile:hover {
+  background: #fff;
+  border-color: #e64a19;
+}
+
+.tendidos {
+  width: 100%;
+  overflow-x: hidden;
+  background: #fff;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.hero {
+  position: relative;
+  min-height: 50vh;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  background-size: cover;
+  background-position: center;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.7) 0%, rgba(255, 87, 34, 0.6) 100%);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 40px 0;
+}
+
+.heroTitle {
+  font-size: 56px;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.heroSubtitle {
+  font-size: 22px;
+  color: #fff;
+  font-weight: 300;
+  max-width: 700px;
+}
+
+.types {
+  padding: 100px 0;
+  background: #fff;
+}
+
+.typesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px;
+}
+
+.typeCard {
+  background: #f8f8f8;
+  padding: 50px 40px;
+  border-radius: 20px;
+  border-left: 5px solid #ff5722;
+}
+
+.typeIcon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #ff5722 0%, #e64a19 100%);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.typeIcon ion-icon {
+  font-size: 42px;
+  color: #fff;
+}
+
+.typeTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 15px;
+}
+
+.typeDesc {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #666;
+}
+
+.catalog {
+  padding: 100px 0;
+  background: #f8f8f8;
+}
+
+.catalogGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.catalogContent {
+  padding-right: 20px;
+}
+
+.sectionLabel {
+  display: inline-block;
+  background: rgba(255, 87, 34, 0.1);
+  color: #ff5722;
+  padding: 10px 24px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 20px;
+}
+
+.sectionTitle {
+  font-size: 42px;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 25px;
+  line-height: 1.3;
+}
+
+.catalogText {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #666;
+  margin-bottom: 35px;
+}
+
+.catalogVideo {
+  position: relative;
+}
+
+.videoWrapper {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.features {
+  padding: 100px 0;
+  background: #fff;
+}
+
+.featuresHeader {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 60px;
+}
+
+.featureColumn {
+  background: #f8f8f8;
+  padding: 50px 40px;
+  border-radius: 20px;
+}
+
+.featureSubtitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 3px solid #ff5722;
+}
+
+.featureItem {
+  padding: 20px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.featureItem:last-child {
+  border-bottom: none;
+}
+
+.gallery {
+  padding: 100px 0;
+  background: #f8f8f8;
+}
+
+.galleryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.btnAgregarImagen {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btnAgregarImagen:hover {
+  background: #388e3c;
+}
+
+.btnAgregarImagen ion-icon {
+  font-size: 20px;
+}
+
+.galleryAdmin {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.galleryItemAdmin {
+  position: relative;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.galleryItemAdmin:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.galleryImgAdmin {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.galleryInfoAdmin {
+  padding: 12px;
+}
+
+.galleryTituloAdmin {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 5px;
+}
+
+.galleryCategoriaAdmin {
+  font-size: 12px;
+  color: #666;
+  text-transform: capitalize;
+}
+
+.btnEliminar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  background: rgba(244, 67, 54, 0.9);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btnEliminar:hover {
+  background: #d32f2f;
+  transform: scale(1.1);
+}
+
+.btnEliminar ion-icon {
+  font-size: 18px;
+  color: #fff;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: #fff;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 12px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.modalHeader h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.modalClose {
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.modalClose:hover {
+  background: #f5f5f5;
+}
+
+.modalClose ion-icon {
+  font-size: 24px;
+  color: #666;
+}
+
+.modalBody {
+  padding: 20px;
+}
+
+.uploading {
+  text-align: center;
+  padding: 20px;
+  color: #ff5722;
+  font-weight: 600;
+}
+
+@media (max-width: 1200px) {
+  .galleryAdmin {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .adminHeader {
+    padding: 16px 20px;
+  }
+
+  .adminHeaderContent h1 {
+    font-size: 16px;
+  }
+
+  .typesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .catalogGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .featuresGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .galleryAdmin {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .adminHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 20px;
+  }
+
+  .adminHeaderActions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .btnPreview,
+  .btnGuardar {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  .hero {
+    min-height: 40vh;
+  }
+
+  .heroTitle {
+    font-size: 32px;
+  }
+
+  .heroSubtitle {
+    font-size: 16px;
+  }
+
+  .sectionTitle {
+    font-size: 28px;
+  }
+
+  .types,
+  .catalog,
+  .features,
+  .gallery {
+    padding: 60px 0;
+  }
+
+  .typeCard {
+    padding: 35px 25px;
+  }
+
+  .typeTitle {
+    font-size: 22px;
+  }
+
+  .featureColumn {
+    padding: 35px 25px;
+  }
+
+  .featureSubtitle {
+    font-size: 20px;
+  }
+
+  .galleryAdmin {
+    grid-template-columns: 1fr;
+  }
+
+  .galleryHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .btnAgregarImagen {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .modalContent {
+    width: 95%;
+    max-height: 80vh;
+  }
+
+  .modalHeader {
+    padding: 15px;
+  }
+
+  .modalHeader h3 {
+    font-size: 18px;
+  }
+
+  .modalBody {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 24px;
+  }
+
+  .heroSubtitle {
+    font-size: 14px;
+  }
+
+  .sectionTitle {
+    font-size: 24px;
+  }
+
+  .typeTitle {
+    font-size: 20px;
+  }
+
+  .typeCard {
+    padding: 25px 20px;
+  }
+
+  .catalogContent {
+    padding-right: 0;
+  }
+
+  .catalogText {
+    font-size: 15px;
+  }
+
+  .featureColumn {
+    padding: 25px 20px;
+  }
+
+  .featureSubtitle {
+    font-size: 18px;
+  }
+
+  .editInput,
+  .editInputSmall,
+  .editTextarea,
+  .editTextareaSmall {
+    font-size: 14px;
+  }
+}
