@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
 import styles from './tendidos.module.css'
 import { getPaginaArriendoEquipos, getCatalogos, getGaleriaTendidos } from './servidor'
 
@@ -36,6 +35,17 @@ export default function Tendidos() {
   const [lightboxIndex, setLightboxIndex] = useState(0)
   const [zoomLevel, setZoomLevel] = useState(1)
   const itemsPerPage = 32
+
+  const filteredGallery = galeria.filter(img => {
+    if (filterType === 'all') return true
+    if (filterType === 'newest') return true
+    return img.categoria === filterType
+  }).sort((a, b) => {
+    if (filterType === 'newest') {
+      return new Date(b.fecha_subida) - new Date(a.fecha_subida)
+    }
+    return 0
+  })
 
   const openLightbox = (imagen, index) => {
     setLightboxImage(imagen)
@@ -83,7 +93,7 @@ export default function Tendidos() {
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [lightboxOpen, lightboxIndex, filteredGallery])
+  }, [lightboxOpen, lightboxIndex])
 
   useEffect(() => {
     async function loadData() {
@@ -104,17 +114,6 @@ export default function Tendidos() {
     }
     loadData()
   }, [])
-
-  const filteredGallery = galeria.filter(img => {
-    if (filterType === 'all') return true
-    if (filterType === 'newest') return true
-    return img.categoria === filterType
-  }).sort((a, b) => {
-    if (filterType === 'newest') {
-      return new Date(b.fecha_subida) - new Date(a.fecha_subida)
-    }
-    return 0
-  })
 
   const totalGalleryPages = Math.ceil(filteredGallery.length / itemsPerPage)
   const startGalleryIndex = (currentGalleryPage - 1) * itemsPerPage
