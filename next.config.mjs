@@ -1,4 +1,8 @@
 const nextConfig = {
+  output: 'standalone',
+  env: {
+    UPLOADS_DIR: process.env.UPLOADS_DIR || '/var/www/uploads'
+  },
   images: {
     remotePatterns: [
       {

@@ -1,3 +1,4 @@
+DROP DATABASE ferreteria_rym;
 CREATE DATABASE IF NOT EXISTS ferreteria_rym
 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

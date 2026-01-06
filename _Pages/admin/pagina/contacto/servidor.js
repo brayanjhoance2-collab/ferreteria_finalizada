@@ -2,6 +2,10 @@
 
 import db from "@/_DB/db"
 import { cookies } from 'next/headers'
+import { writeFile, mkdir, unlink } from 'fs/promises'
+import { join } from 'path'
+
+const UPLOADS_DIR = process.env.UPLOADS_DIR || '/var/www/uploads'
 
 async function verificarSesion() {
   const cookieStore = await cookies()
@@ -125,8 +129,6 @@ export async function actualizarPaginaContacto(datos) {
 export async function subirImagenHero(formData) {
   try {
     await verificarSesion()
-    const fs = require('fs').promises
-    const path = require('path')
 
     const file = formData.get('imagen')
     if (!file) {
@@ -143,13 +145,17 @@ export async function subirImagenHero(formData) {
 
     const extension = file.name.split('.').pop()
     const fileName = `contacto-hero-${Date.now()}.${extension}`
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'paginas')
-    const filePath = path.join(uploadDir, fileName)
+    const uploadDir = join(UPLOADS_DIR, 'paginas')
+    const filePath = join(uploadDir, fileName)
 
-    await fs.mkdir(uploadDir, { recursive: true })
+    try {
+      await mkdir(uploadDir, { recursive: true })
+    } catch (err) {
+      if (err.code !== 'EEXIST') throw err
+    }
 
     const buffer = Buffer.from(await file.arrayBuffer())
-    await fs.writeFile(filePath, buffer)
+    await writeFile(filePath, buffer)
 
     const imagenUrl = `/uploads/paginas/${fileName}`
 
@@ -162,9 +168,10 @@ export async function subirImagenHero(formData) {
     }
 
     if (paginaActual[0].hero_imagen_url) {
-      const oldImagePath = path.join(process.cwd(), 'public', paginaActual[0].hero_imagen_url)
+      const oldFileName = paginaActual[0].hero_imagen_url.split('/').pop()
+      const oldImagePath = join(UPLOADS_DIR, 'paginas', oldFileName)
       try {
-        await fs.unlink(oldImagePath)
+        await unlink(oldImagePath)
       } catch (err) {
         console.error('Error al eliminar imagen anterior:', err)
       }

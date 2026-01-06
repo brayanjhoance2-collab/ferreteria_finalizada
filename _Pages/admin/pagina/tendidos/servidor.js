@@ -3,7 +3,9 @@
 import db from "@/_DB/db"
 import { cookies } from 'next/headers'
 import { writeFile, mkdir, unlink } from 'fs/promises'
-import path from 'path'
+import { join } from 'path'
+
+const UPLOADS_DIR = process.env.UPLOADS_DIR || '/var/www/uploads'
 
 async function verificarSesion() {
   const cookieStore = await cookies()
@@ -206,13 +208,18 @@ export async function uploadImagenPagina(formData) {
     const bytes = await imagen.arrayBuffer()
     const buffer = Buffer.from(bytes)
 
-    const uploadsDir = path.join(process.cwd(), 'public', 'uploads', 'paginas')
-    await mkdir(uploadsDir, { recursive: true })
+    const uploadsDir = join(UPLOADS_DIR, 'paginas')
+    
+    try {
+      await mkdir(uploadsDir, { recursive: true })
+    } catch (err) {
+      if (err.code !== 'EEXIST') throw err
+    }
 
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
     const extension = imagen.name.split('.').pop()
     const filename = `${campo}-${uniqueSuffix}.${extension}`
-    const filepath = path.join(uploadsDir, filename)
+    const filepath = join(uploadsDir, filename)
 
     await writeFile(filepath, buffer)
 
@@ -277,13 +284,18 @@ export async function uploadImagenGaleria(formData) {
     const bytes = await imagen.arrayBuffer()
     const buffer = Buffer.from(bytes)
 
-    const uploadsDir = path.join(process.cwd(), 'public', 'uploads', 'galeria')
-    await mkdir(uploadsDir, { recursive: true })
+    const uploadsDir = join(UPLOADS_DIR, 'galeria')
+    
+    try {
+      await mkdir(uploadsDir, { recursive: true })
+    } catch (err) {
+      if (err.code !== 'EEXIST') throw err
+    }
 
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
     const extension = imagen.name.split('.').pop()
     const filename = `galeria-${uniqueSuffix}.${extension}`
-    const filepath = path.join(uploadsDir, filename)
+    const filepath = join(uploadsDir, filename)
 
     await writeFile(filepath, buffer)
 
@@ -315,8 +327,8 @@ export async function deleteImagenGaleria(id) {
     const [result] = await db.query('SELECT url FROM galeria WHERE id = ?', [id])
     
     if (result && result.length > 0) {
-      const imagenUrl = result[0].url
-      const filepath = path.join(process.cwd(), 'public', imagenUrl)
+      const fileName = result[0].url.split('/').pop()
+      const filepath = join(UPLOADS_DIR, 'galeria', fileName)
       
       try {
         await unlink(filepath)

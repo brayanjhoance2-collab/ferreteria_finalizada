@@ -1,8 +1,10 @@
 "use server"
 
 import db from "@/_DB/db"
-import { writeFile } from 'fs/promises'
-import path from 'path'
+import { writeFile, mkdir } from 'fs/promises'
+import { join } from 'path'
+
+const UPLOADS_DIR = process.env.UPLOADS_DIR || '/var/www/uploads'
 
 function generarSlug(nombre) {
   return nombre
@@ -87,15 +89,16 @@ export async function subirImagen(formData) {
 
     const timestamp = Date.now()
     const nombreOriginal = imagen.name.replace(/\s+/g, '_')
-    const extension = path.extname(nombreOriginal)
-    const nombreArchivo = `equipo_${tipo}_${timestamp}${extension}`
+    const extension = nombreOriginal.split('.').pop()
+    const nombreArchivo = `equipo_${tipo}_${timestamp}.${extension}`
 
-    const rutaPublic = path.join(process.cwd(), 'public', 'uploads', 'equipos')
-    const rutaCompleta = path.join(rutaPublic, nombreArchivo)
+    const rutaPublic = join(UPLOADS_DIR, 'equipos')
+    const rutaCompleta = join(rutaPublic, nombreArchivo)
 
-    const fs = require('fs')
-    if (!fs.existsSync(rutaPublic)) {
-      fs.mkdirSync(rutaPublic, { recursive: true })
+    try {
+      await mkdir(rutaPublic, { recursive: true })
+    } catch (err) {
+      if (err.code !== 'EEXIST') throw err
     }
 
     await writeFile(rutaCompleta, buffer)

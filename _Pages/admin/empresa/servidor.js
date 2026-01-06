@@ -2,6 +2,10 @@
 
 import db from "@/_DB/db"
 import { cookies } from 'next/headers'
+import { writeFile, mkdir, unlink } from 'fs/promises'
+import { join } from 'path'
+
+const UPLOADS_DIR = process.env.UPLOADS_DIR || '/var/www/uploads'
 
 async function verificarSesion() {
   const cookieStore = await cookies()
@@ -142,8 +146,6 @@ export async function actualizarEmpresa(datos) {
 export async function subirLogo(formData) {
   try {
     await verificarSesion()
-    const fs = require('fs').promises
-    const path = require('path')
 
     const file = formData.get('logo')
     if (!file) {
@@ -160,13 +162,17 @@ export async function subirLogo(formData) {
 
     const extension = file.name.split('.').pop()
     const fileName = `logo-empresa-${Date.now()}.${extension}`
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'logos')
-    const filePath = path.join(uploadDir, fileName)
+    const uploadDir = join(UPLOADS_DIR, 'logos')
+    const filePath = join(uploadDir, fileName)
 
-    await fs.mkdir(uploadDir, { recursive: true })
+    try {
+      await mkdir(uploadDir, { recursive: true })
+    } catch (err) {
+      if (err.code !== 'EEXIST') throw err
+    }
 
     const buffer = Buffer.from(await file.arrayBuffer())
-    await fs.writeFile(filePath, buffer)
+    await writeFile(filePath, buffer)
 
     const logoUrl = `/uploads/logos/${fileName}`
 
@@ -179,9 +185,10 @@ export async function subirLogo(formData) {
     }
 
     if (empresaActual[0].logo_url) {
-      const oldLogoPath = path.join(process.cwd(), 'public', empresaActual[0].logo_url)
+      const oldFileName = empresaActual[0].logo_url.split('/').pop()
+      const oldLogoPath = join(UPLOADS_DIR, 'logos', oldFileName)
       try {
-        await fs.unlink(oldLogoPath)
+        await unlink(oldLogoPath)
       } catch (err) {
         console.error('Error al eliminar logo anterior:', err)
       }

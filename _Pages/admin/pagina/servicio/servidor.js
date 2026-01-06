@@ -3,7 +3,9 @@
 import db from "@/_DB/db"
 import { cookies } from 'next/headers'
 import { writeFile, mkdir } from 'fs/promises'
-import path from 'path'
+import { join } from 'path'
+
+const UPLOADS_DIR = process.env.UPLOADS_DIR || '/var/www/uploads'
 
 async function verificarSesion() {
   const cookieStore = await cookies()
@@ -325,13 +327,18 @@ export async function uploadImagenPagina(formData) {
     const bytes = await imagen.arrayBuffer()
     const buffer = Buffer.from(bytes)
 
-    const uploadsDir = path.join(process.cwd(), 'public', 'uploads', 'paginas')
-    await mkdir(uploadsDir, { recursive: true })
+    const uploadsDir = join(UPLOADS_DIR, 'paginas')
+    
+    try {
+      await mkdir(uploadsDir, { recursive: true })
+    } catch (err) {
+      if (err.code !== 'EEXIST') throw err
+    }
 
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
     const extension = imagen.name.split('.').pop()
     const filename = `${campo}-${uniqueSuffix}.${extension}`
-    const filepath = path.join(uploadsDir, filename)
+    const filepath = join(uploadsDir, filename)
 
     await writeFile(filepath, buffer)
 

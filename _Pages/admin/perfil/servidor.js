@@ -3,6 +3,10 @@
 import db from "@/_DB/db"
 import { cookies } from 'next/headers'
 import bcrypt from 'bcryptjs'
+import { writeFile, mkdir, unlink } from 'fs/promises'
+import { join } from 'path'
+
+const UPLOADS_DIR = process.env.UPLOADS_DIR || '/var/www/uploads'
 
 async function verificarSesion() {
   const cookieStore = await cookies()
@@ -166,8 +170,6 @@ export async function cambiarPassword(passwordActual, passwordNueva) {
 export async function subirAvatar(formData) {
   try {
     const sesion = await verificarSesion()
-    const fs = require('fs').promises
-    const path = require('path')
 
     const file = formData.get('avatar')
     if (!file) {
@@ -184,13 +186,18 @@ export async function subirAvatar(formData) {
 
     const extension = file.name.split('.').pop()
     const fileName = `avatar-${sesion.usuario_id}-${Date.now()}.${extension}`
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'avatars')
-    const filePath = path.join(uploadDir, fileName)
+    
+    const uploadDir = join(UPLOADS_DIR, 'avatars')
+    const filePath = join(uploadDir, fileName)
 
-    await fs.mkdir(uploadDir, { recursive: true })
+    try {
+      await mkdir(uploadDir, { recursive: true })
+    } catch (err) {
+      if (err.code !== 'EEXIST') throw err
+    }
 
     const buffer = Buffer.from(await file.arrayBuffer())
-    await fs.writeFile(filePath, buffer)
+    await writeFile(filePath, buffer)
 
     const avatarUrl = `/uploads/avatars/${fileName}`
 
@@ -200,9 +207,10 @@ export async function subirAvatar(formData) {
     )
 
     if (usuarioActual && usuarioActual.length > 0 && usuarioActual[0].avatar_url) {
-      const oldAvatarPath = path.join(process.cwd(), 'public', usuarioActual[0].avatar_url)
+      const oldFileName = usuarioActual[0].avatar_url.split('/').pop()
+      const oldAvatarPath = join(UPLOADS_DIR, 'avatars', oldFileName)
       try {
-        await fs.unlink(oldAvatarPath)
+        await unlink(oldAvatarPath)
       } catch (err) {
         console.error('Error al eliminar avatar anterior:', err)
       }
