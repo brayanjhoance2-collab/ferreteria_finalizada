@@ -165,19 +165,15 @@ export default function HeaderAdmin() {
         <div className={styles.headerContent}>
           <Link href="/admin/dashboard" className={styles.logo}>
             {empresa?.logo_url ? (
-              <Image 
+              <img 
                 src={empresa.logo_url} 
                 alt={empresa.nombre || 'Logo'} 
-                width={120} 
-                height={40}
                 className={styles.logoImage}
               />
             ) : (
-              <Image 
+              <img 
                 src="/logo.png" 
-                alt={empresa.nombre || 'Logo'} 
-                width={250} 
-                height={80}
+                alt={empresa?.nombre || 'Logo'} 
                 className={styles.logoImage}
               />
             )}

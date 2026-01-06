@@ -422,11 +422,9 @@ export default function AdminArriendoEquipos() {
             <div className={styles.galleryAdmin}>
               {galeria.map((imagen) => (
                 <div key={imagen.id} className={styles.galleryItemAdmin}>
-                  <Image 
+                  <img 
                     src={imagen.url}
                     alt={imagen.alt_text || imagen.titulo || 'Imagen'}
-                    width={200}
-                    height={150}
                     className={styles.galleryImgAdmin}
                   />
                   <div className={styles.galleryInfoAdmin}>

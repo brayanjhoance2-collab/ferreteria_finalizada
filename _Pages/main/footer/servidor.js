@@ -12,7 +12,8 @@ export async function getEmpresaInfo() {
         horario_lun_jue,
         horario_vie,
         horario_sab,
-        descripcion
+        descripcion,
+        logo_url
       FROM empresa_info 
       WHERE activo = true 
       LIMIT 1
@@ -26,7 +27,8 @@ export async function getEmpresaInfo() {
         horario_lun_jue: '08:00 - 18:00',
         horario_vie: '08:00 - 18:00',
         horario_sab: '08:00 - 14:00',
-        descripcion: 'Soluciones integrales en arriendo de equipos para tendidos eléctricos. Más de 20 años de experiencia respaldando proyectos en todo el Perú.'
+        descripcion: 'Soluciones integrales en arriendo de equipos para tendidos eléctricos. Más de 20 años de experiencia respaldando proyectos en todo el Perú.',
+        logo_url: null
       }
     }
 
@@ -40,7 +42,8 @@ export async function getEmpresaInfo() {
       horario_lun_jue: '08:00 - 18:00',
       horario_vie: '08:00 - 18:00',
       horario_sab: '08:00 - 14:00',
-      descripcion: 'Soluciones integrales en arriendo de equipos para tendidos eléctricos. Más de 20 años de experiencia respaldando proyectos en todo el Perú.'
+      descripcion: 'Soluciones integrales en arriendo de equipos para tendidos eléctricos. Más de 20 años de experiencia respaldando proyectos en todo el Perú.',
+      logo_url: null
     }
   }
 }

@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import styles from './header.module.css'
 import { getEmpresaInfo } from './servidor'
 
@@ -64,12 +63,9 @@ export default function Header() {
           <div className={styles.container}>
             <div className={styles.navContent}>
               <Link href="/" className={styles.logo}>
-                <Image 
+                <img 
                   src={empresaInfo.logo_url || "/logo.png"} 
                   alt={empresaInfo.nombre}
-                  width={200}
-                  height={70}
-                  priority
                   className={styles.logoImage}
                 />
               </Link>
@@ -121,11 +117,9 @@ export default function Header() {
 
         <div className={styles.mobileMenuContent}>
           <div className={styles.mobileLogoSection}>
-            <Image 
+            <img 
               src={empresaInfo.logo_url || "/logo.png"} 
               alt={empresaInfo.nombre}
-              width={150}
-              height={50}
               className={styles.mobileLogoImage}
             />
           </div>

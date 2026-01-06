@@ -4,7 +4,7 @@ import db from "@/_DB/db"
 
 export async function getEmpresaInfo() {
   try {
-    const result = await db.query(`
+    const [result] = await db.query(`
       SELECT 
         nombre,
         telefono,
@@ -22,7 +22,7 @@ export async function getEmpresaInfo() {
       LIMIT 1
     `)
 
-    if (result.rows.length === 0) {
+    if (!result || result.length === 0) {
       return {
         nombre: 'Ferretería RyM',
         telefono: '+51 1 234 5678',
@@ -38,7 +38,7 @@ export async function getEmpresaInfo() {
       }
     }
 
-    return result.rows[0]
+    return result[0]
   } catch (error) {
     console.error('Error al obtener información de empresa:', error)
     return {

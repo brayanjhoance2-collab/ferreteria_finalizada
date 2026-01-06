@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import styles from './footer.module.css'
 import { getEmpresaInfo } from './servidor'
 
@@ -32,11 +31,9 @@ export default function Footer() {
           <div className={styles.footerGrid}>
             <div className={styles.footerColumn}>
               <div className={styles.footerLogo}>
-                <Image 
-                  src="/logo.png"
+                <img 
+                  src={empresaInfo.logo_url || "/logo.png"}
                   alt={empresaInfo.nombre}
-                  width={180}
-                  height={60}
                   className={styles.logoImage}
                 />
               </div>

@@ -2,9 +2,26 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import styles from './tendidos.module.css'
 import { getPaginaArriendoEquipos, getCatalogos, getGaleriaTendidos } from './servidor'
+
+function getYouTubeEmbedUrl(url) {
+  if (!url) return null
+  
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
+  const match = url.match(regExp)
+  
+  if (match && match[2].length === 11) {
+    return `https://www.youtube.com/embed/${match[2]}`
+  }
+  
+  return null
+}
+
+function isYouTubeUrl(url) {
+  if (!url) return false
+  return url.includes('youtube.com') || url.includes('youtu.be')
+}
 
 export default function Tendidos() {
   const [paginaData, setPaginaData] = useState(null)
@@ -14,7 +31,59 @@ export default function Tendidos() {
   const [currentGalleryPage, setCurrentGalleryPage] = useState(1)
   const [visibleGallery, setVisibleGallery] = useState(8)
   const [loading, setLoading] = useState(true)
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [lightboxImage, setLightboxImage] = useState(null)
+  const [lightboxIndex, setLightboxIndex] = useState(0)
+  const [zoomLevel, setZoomLevel] = useState(1)
   const itemsPerPage = 32
+
+  const openLightbox = (imagen, index) => {
+    setLightboxImage(imagen)
+    setLightboxIndex(index)
+    setLightboxOpen(true)
+    setZoomLevel(1)
+    document.body.style.overflow = 'hidden'
+  }
+
+  const closeLightbox = () => {
+    setLightboxOpen(false)
+    setLightboxImage(null)
+    setZoomLevel(1)
+    document.body.style.overflow = 'auto'
+  }
+
+  const nextImage = () => {
+    const nextIndex = (lightboxIndex + 1) % filteredGallery.length
+    setLightboxIndex(nextIndex)
+    setLightboxImage(filteredGallery[nextIndex])
+    setZoomLevel(1)
+  }
+
+  const prevImage = () => {
+    const prevIndex = (lightboxIndex - 1 + filteredGallery.length) % filteredGallery.length
+    setLightboxIndex(prevIndex)
+    setLightboxImage(filteredGallery[prevIndex])
+    setZoomLevel(1)
+  }
+
+  const handleZoomIn = () => {
+    setZoomLevel(prev => Math.min(prev + 0.5, 3))
+  }
+
+  const handleZoomOut = () => {
+    setZoomLevel(prev => Math.max(prev - 0.5, 1))
+  }
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (!lightboxOpen) return
+      if (e.key === 'Escape') closeLightbox()
+      if (e.key === 'ArrowRight') nextImage()
+      if (e.key === 'ArrowLeft') prevImage()
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [lightboxOpen, lightboxIndex, filteredGallery])
 
   useEffect(() => {
     async function loadData() {
@@ -59,6 +128,8 @@ export default function Tendidos() {
   if (loading) {
     return <div className={styles.loading}>Cargando...</div>
   }
+
+  const youtubeEmbedUrl = getYouTubeEmbedUrl(paginaData?.video_url)
 
   return (
     <main className={styles.tendidos}>
@@ -141,7 +212,16 @@ export default function Tendidos() {
               </div>
               <div className={styles.catalogVideo}>
                 <div className={styles.videoWrapper}>
-                  {paginaData?.video_url ? (
+                  {youtubeEmbedUrl ? (
+                    <iframe
+                      src={youtubeEmbedUrl}
+                      title="Video de YouTube"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className={styles.youtubeIframe}
+                    ></iframe>
+                  ) : paginaData?.video_url && !isYouTubeUrl(paginaData.video_url) ? (
                     <video 
                       controls 
                       poster={paginaData.video_poster_url || '/video-poster.jpg'}
@@ -299,13 +379,15 @@ export default function Tendidos() {
             </div>
 
             <div className={styles.galleryGridDesktop}>
-              {currentGallery.map((imagen) => (
-                <div key={imagen.id} className={styles.galleryItem}>
-                  <Image 
+              {currentGallery.map((imagen, index) => (
+                <div 
+                  key={imagen.id} 
+                  className={styles.galleryItem}
+                  onClick={() => openLightbox(imagen, startGalleryIndex + index)}
+                >
+                  <img 
                     src={imagen.url}
                     alt={imagen.alt_text || imagen.titulo || 'Equipo'}
-                    width={400}
-                    height={300}
                     className={styles.galleryImg}
                   />
                   {imagen.titulo && (
@@ -318,13 +400,15 @@ export default function Tendidos() {
             </div>
 
             <div className={styles.galleryGridMobile}>
-              {filteredGallery.slice(0, visibleGallery).map((imagen) => (
-                <div key={imagen.id} className={styles.galleryItem}>
-                  <Image 
+              {filteredGallery.slice(0, visibleGallery).map((imagen, index) => (
+                <div 
+                  key={imagen.id} 
+                  className={styles.galleryItem}
+                  onClick={() => openLightbox(imagen, index)}
+                >
+                  <img 
                     src={imagen.url}
                     alt={imagen.alt_text || imagen.titulo || 'Equipo'}
-                    width={400}
-                    height={300}
                     className={styles.galleryImg}
                   />
                   {imagen.titulo && (
@@ -371,6 +455,51 @@ export default function Tendidos() {
             )}
           </div>
         </section>
+      )}
+
+      {lightboxOpen && lightboxImage && (
+        <div className={styles.lightbox} onClick={closeLightbox}>
+          <button className={styles.lightboxClose} onClick={closeLightbox}>
+            <ion-icon name="close"></ion-icon>
+          </button>
+          
+          <button className={styles.lightboxPrev} onClick={(e) => { e.stopPropagation(); prevImage(); }}>
+            <ion-icon name="chevron-back"></ion-icon>
+          </button>
+          
+          <button className={styles.lightboxNext} onClick={(e) => { e.stopPropagation(); nextImage(); }}>
+            <ion-icon name="chevron-forward"></ion-icon>
+          </button>
+
+          <div className={styles.lightboxZoomControls}>
+            <button onClick={(e) => { e.stopPropagation(); handleZoomOut(); }} disabled={zoomLevel <= 1}>
+              <ion-icon name="remove"></ion-icon>
+            </button>
+            <span>{Math.round(zoomLevel * 100)}%</span>
+            <button onClick={(e) => { e.stopPropagation(); handleZoomIn(); }} disabled={zoomLevel >= 3}>
+              <ion-icon name="add"></ion-icon>
+            </button>
+          </div>
+
+          <div className={styles.lightboxContent} onClick={(e) => e.stopPropagation()}>
+            <img 
+              src={lightboxImage.url}
+              alt={lightboxImage.alt_text || lightboxImage.titulo || 'Equipo'}
+              className={styles.lightboxImage}
+              style={{ transform: `scale(${zoomLevel})` }}
+            />
+          </div>
+
+          {lightboxImage.titulo && (
+            <div className={styles.lightboxInfo}>
+              <h3>{lightboxImage.titulo}</h3>
+              {lightboxImage.descripcion && <p>{lightboxImage.descripcion}</p>}
+              <span className={styles.lightboxCounter}>
+                {lightboxIndex + 1} / {filteredGallery.length}
+              </span>
+            </div>
+          )}
+        </div>
       )}
     </main>
   )
