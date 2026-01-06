@@ -3,7 +3,7 @@ import mysql from 'mysql2/promise';
 const db = mysql.createPool({
   host: 'localhost',      // Host local
   port: 3306,             // Puerto predeterminado de MySQL
-  user: 'root',         // Tu usuario
+  user: 'brayan',         // Tu usuario
   password: '123456',  // Reemplaza con tu contraseña real
   database: 'ferreteria_rym',   // Nombre de la base de datos
 });
